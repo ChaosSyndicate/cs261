@@ -1,8 +1,8 @@
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStream;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.InputStream;
+import java.util.*;
 
 // By default, this code will get its input data from the Java standard input,
 // java.lang.System.in. To allow input to come from a file instead, which can be
@@ -44,6 +44,10 @@ public class Assignment1
 
         }
 
+        Map<String, List<String>> FinalFilteredMap = new TreeMap<String, List<String>>();
+        List<String> TextToList = new ArrayList<String>();
+        Set<String> FilteredSet = new LinkedHashSet<String>();
+
         // Now that we know where the data is coming from we'll start processing.
         // Notice that getFileInputStream could have generated an error and left "in"
         // as null.  We should check that here and avoid trying to process the stream
@@ -63,11 +67,46 @@ public class Assignment1
             while (sc.hasNext()) {
                 word = sc.next();
                 if (!word.equals("---")) {
-
-                    // do something with each word in the input
-                    // replace this line with your code (probably more than one line of code)
-                    System.out.println(word);
+                   TextToList.add(word);
+                   FilteredSet.add(word);
                 }
+            }
+
+            //Find all the pairs of words into a list and then place into FinalMap
+            for (String s : FilteredSet) {
+                List<String> MatchList = new ArrayList<String>();
+                for (int i = 0; i < TextToList.size() -1; i++) {
+                    if (s.equals(TextToList.get(i)))
+                        MatchList.add(TextToList.get(++i));
+                }
+                FinalFilteredMap.put(s, MatchList);
+            }
+
+            //Formatting for text output
+            for (Map.Entry<String, List<String>> entry : FinalFilteredMap.entrySet()) {
+                System.out.println(entry.getKey() + ":");
+
+                //Retrieve the list to be Sorted
+                List<String> UnFilteredPairs = entry.getValue();
+                Collections.sort(UnFilteredPairs);
+
+                // Count the number of unique instances in the list:
+                Map<String, Integer> PairwordsMap = new LinkedHashMap<String, Integer>();
+                List<String>words = entry.getValue();
+                for(String s : words){
+                    if(!PairwordsMap.containsKey(s)) {
+                        PairwordsMap.put(s, 1);
+                    }
+                    else{
+                        PairwordsMap.put(s, PairwordsMap.get(s) + 1);
+                    }
+                }
+
+                // Print the occurrences of following symbols:
+                for(String s : PairwordsMap.keySet()) {
+                    System.out.println("   " + s + ", " + PairwordsMap.get(s));
+                }
+
             }
             System.out.printf("%nbye...%n");
         }
