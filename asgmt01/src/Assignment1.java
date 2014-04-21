@@ -44,7 +44,7 @@ public class Assignment1
 
         }
 
-        Map<String, List<String>> FinalFilteredMap = new TreeMap<String, List<String>>();
+        Map<String, Map<String, Integer>> FinalFilteredMap = new TreeMap<String, Map<String, Integer>>();
         List<String> TextToList = new ArrayList<String>();
         Set<String> FilteredSet = new LinkedHashSet<String>();
 
@@ -72,43 +72,33 @@ public class Assignment1
                 }
             }
 
-            //Find all the pairs of words into a list and then place into FinalMap
-            for (String s : FilteredSet) {
-                List<String> MatchList = new ArrayList<String>();
-                for (int i = 0; i < TextToList.size() -1; i++) {
-                    if (s.equals(TextToList.get(i)))
-                        MatchList.add(TextToList.get(++i));
+            for(String s : FilteredSet) {
+                Map<String, Integer> PairCount = new TreeMap<String, Integer>();
+                Iterator<String> iterator = TextToList.iterator();
+                while (iterator.hasNext()) {
+                   String DocString = iterator.next();
+                   if (s.equals(DocString) && iterator.hasNext()) {
+                       DocString = iterator.next();
+                       if (!PairCount.containsKey(DocString))
+                           PairCount.put(DocString, 1);
+                       else {
+                           PairCount.put(DocString, PairCount.get(DocString) + 1);
+                       }
+                   }
                 }
-                FinalFilteredMap.put(s, MatchList);
+                FinalFilteredMap.put(s, PairCount);
             }
 
-            //Formatting for text output
-            for (Map.Entry<String, List<String>> entry : FinalFilteredMap.entrySet()) {
-                System.out.println(entry.getKey() + ":");
-
-                //Retrieve the list to be Sorted
-                List<String> UnFilteredPairs = entry.getValue();
-                Collections.sort(UnFilteredPairs);
-
-                // Count the number of unique instances in the list:
-                Map<String, Integer> PairwordsMap = new LinkedHashMap<String, Integer>();
-                List<String>words = entry.getValue();
-                for(String s : words){
-                    if(!PairwordsMap.containsKey(s)) {
-                        PairwordsMap.put(s, 1);
+                // Print the output with formatting
+                for (Map.Entry<String, Map<String, Integer>> entry : FinalFilteredMap.entrySet()) {
+                    System.out.println(entry.getKey() + ":");
+                    Map<String, Integer> values = entry.getValue();
+                    for (Map.Entry<String, Integer> PairEntry: values.entrySet())
+                        System.out.println("\t" + PairEntry.getKey() + ", " + PairEntry.getValue());
                     }
-                    else{
-                        PairwordsMap.put(s, PairwordsMap.get(s) + 1);
-                    }
-                }
 
-                // Print the occurrences of following symbols:
-                for(String s : PairwordsMap.keySet()) {
-                    System.out.println("   " + s + ", " + PairwordsMap.get(s));
                 }
-
-            }
             System.out.printf("%nbye...%n");
         }
-    }
+
 }
