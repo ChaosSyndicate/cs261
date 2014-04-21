@@ -44,7 +44,7 @@ public class Assignment1
 
         }
 
-        Map<String, List<String>> FinalFilteredMap = new TreeMap<String, List<String>>();
+        Map<String, Map<String, Integer>> FinalFilteredMap = new TreeMap<String, Map<String, Integer>>();
         List<String> TextToList = new ArrayList<String>();
         Set<String> FilteredSet = new LinkedHashSet<String>();
 
@@ -72,14 +72,21 @@ public class Assignment1
                 }
             }
 
-            //Find all the pairs of words into a list and then place into FinalMap
-            for (String s : FilteredSet) {
-                List<String> MatchList = new ArrayList<String>();
-                for (int i = 0; i < TextToList.size() -1; i++) {
-                    if (s.equals(TextToList.get(i)))
-                        MatchList.add(TextToList.get(++i));
+            for(String s : FilteredSet) {
+                Map<String, Integer> PairCount = new TreeMap<String, Integer>();
+                Iterator<String> iterator = TextToList.iterator();
+                while (iterator.hasNext()) {
+                   String DocString = iterator.next();
+                   if (s.equals(DocString) && iterator.hasNext()) {
+                       DocString = iterator.next();
+                       if (!PairCount.containsKey(DocString))
+                           PairCount.put(DocString, 1);
+                       else {
+                           PairCount.put(DocString, PairCount.get(DocString) + 1);
+                       }
+                   }
                 }
-                FinalFilteredMap.put(s, MatchList);
+                FinalFilteredMap.put(s, PairCount);
             }
 
             //Formatting for text output
