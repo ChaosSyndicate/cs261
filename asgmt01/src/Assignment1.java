@@ -89,33 +89,16 @@ public class Assignment1
                 FinalFilteredMap.put(s, PairCount);
             }
 
-            //Formatting for text output
-            for (Map.Entry<String, List<String>> entry : FinalFilteredMap.entrySet()) {
-                System.out.println(entry.getKey() + ":");
-
-                //Retrieve the list to be Sorted
-                List<String> UnFilteredPairs = entry.getValue();
-                Collections.sort(UnFilteredPairs);
-
-                // Count the number of unique instances in the list:
-                Map<String, Integer> PairwordsMap = new LinkedHashMap<String, Integer>();
-                List<String>words = entry.getValue();
-                for(String s : words){
-                    if(!PairwordsMap.containsKey(s)) {
-                        PairwordsMap.put(s, 1);
+                // Print the output with formatting
+                for (Map.Entry<String, Map<String, Integer>> entry : FinalFilteredMap.entrySet()) {
+                    System.out.println(entry.getKey() + ":");
+                    Map<String, Integer> values = entry.getValue();
+                    for (Map.Entry<String, Integer> PairEntry: values.entrySet())
+                        System.out.println("\t" + PairEntry.getKey() + ", " + PairEntry.getValue());
                     }
-                    else{
-                        PairwordsMap.put(s, PairwordsMap.get(s) + 1);
-                    }
-                }
 
-                // Print the occurrences of following symbols:
-                for(String s : PairwordsMap.keySet()) {
-                    System.out.println("   " + s + ", " + PairwordsMap.get(s));
                 }
-
-            }
             System.out.printf("%nbye...%n");
         }
-    }
+
 }
