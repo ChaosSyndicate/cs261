@@ -33,6 +33,7 @@ public class Assignment2
         				  N_GAMES, N_HANDS, CARDS_PER_HAND, CARDS_PER_LINE, SHUFFLE);
         // add your code here
         Dealer dealer = new Dealer();
+        dealer.printDeck(CARDS_PER_LINE);
         dealer.play(N_GAMES, N_HANDS, CARDS_PER_HAND, CARDS_PER_LINE, SHUFFLE);
     }
 }

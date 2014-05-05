@@ -13,6 +13,9 @@ public class Dealer
     public void shuffleDeck() {
     }
 
+    public void printDeck(int itemsPerLine) {
+        cardDeck.print(itemsPerLine);
+    }
 
     public void play(int NumGames, int playersNum, int cardNum, int itemsPerLine, boolean shuffle) {
         for (int i = 0; i < NumGames; i ++) {
@@ -32,9 +35,13 @@ public class Dealer
                 }
             }
 
-            for (int j = 0; j < )
-
-
+            for (int j = 0; j < playersNum; j++) {
+                System.out.println("--- Hand" + (j+1) + "---" );
+                for (int k = 0; k < cardNum; k++) {
+                    playerHand[j].print(itemsPerLine);
+                    System.out.println(playerHand[j].score());
+                }
+            }
 
 
         }
