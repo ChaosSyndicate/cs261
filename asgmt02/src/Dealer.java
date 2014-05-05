@@ -1,29 +1,19 @@
 public class Dealer
 {
-    private Deck CardDeck;
+    private Deck cardDeck;
 
     Dealer() {
-        Deck CardDeck = new Deck();
-    }
-
-    public int sumOfHand() {
-        int sum = 0;
-        return sum;
+        Deck cardDeck = new Deck();
     }
 
     public Card dealCard() {
-        return CardDeck.remove();
+        return cardDeck.remove();
     }
 
     public void shuffleDeck() {
     }
 
-    public void Play(int playersNum, int cardNum, int printLines, boolean shuffle) {
-        if (shuffle) {
-            CardDeck.Shuffle();
-        }
 
-        Hand playerHand[] = new Hand[playersNum];
     public void play(int NumGames, int playersNum, int cardNum, int itemsPerLine, boolean shuffle) {
         for (int i = 0; i < NumGames; i ++) {
             if (shuffle) {
