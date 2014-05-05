@@ -3,15 +3,13 @@ public class Dealer
     private Deck cardDeck;
 
     Dealer() {
-        Deck cardDeck = new Deck();
+        cardDeck = new Deck();
     }
 
     public Card dealCard() {
         return cardDeck.remove();
     }
 
-    public void shuffleDeck() {
-    }
 
     public void printDeck(int itemsPerLine) {
         cardDeck.print(itemsPerLine);

@@ -6,7 +6,7 @@ import java.util.List;
 public class Deck
 {
     private static final List<Card> protoDeck = new ArrayList<Card>();
-    private LinkedList<Card> DeckCards = new LinkedList<Card>();
+    private LinkedList<Card> DeckCards;
 
     // initialize prototype deck
     static {
@@ -18,6 +18,8 @@ public class Deck
     public Deck() {
         DeckCards = new LinkedList<Card>(protoDeck);
     }
+
+
 
     public void print(int itemsPerLine) {
         int itemsPrinted = 0;
