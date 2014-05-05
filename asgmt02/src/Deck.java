@@ -19,8 +19,6 @@ public class Deck
         DeckCards = new LinkedList<Card>(protoDeck);
     }
 
-
-
     public void print(int itemsPerLine) {
         int itemsPrinted = 0;
         for (Card c : DeckCards) {
@@ -32,8 +30,8 @@ public class Deck
                 itemsPrinted = 0;
                 System.out.println();
             }
-        System.out.println();
         }
+        System.out.println();
     }
 
 
