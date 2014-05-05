@@ -30,7 +30,7 @@ public class Dealer
 
             //Deal Cards for each player
             for (int j = 0; j < cardNum; j++) {
-                for (int k = 0; k < playersNum; k++) {
+                for (int k = 0; k <= playersNum; k++) {
                     playerHand[j].add(dealCard());
                 }
             }
