@@ -6,11 +6,11 @@ public class Assignment2
 	static int		CARDS_PER_HAND;
 	static int		CARDS_PER_LINE;
     static boolean	SHUFFLE;
-	
+
     public static void main(String args[])
     {
     	// remember to have this print your own name instead of I. Forgot
-        System.out.printf("CS261 - Assignment 2 - I. Forgot%n%n");
+        System.out.printf("CS261 - Assignment 2 - Kevin Bui%n%n");
         
         // get command line arguments
         if (args.length != 5) {
@@ -31,7 +31,8 @@ public class Assignment2
 
         System.out.printf("games: %d, hands: %d, cards per hand: %d,%ncards per line: %d, shuffle: %b%n%n",
         				  N_GAMES, N_HANDS, CARDS_PER_HAND, CARDS_PER_LINE, SHUFFLE);
-        
         // add your code here
+        Dealer dealer = new Dealer();
+        dealer.play(N_GAMES, N_HANDS, CARDS_PER_HAND, CARDS_PER_LINE, SHUFFLE);
     }
 }
