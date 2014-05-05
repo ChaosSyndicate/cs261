@@ -21,9 +21,10 @@ public class Deck
 
     public void print(int itemsPerLine) {
         int itemsPrinted = 0;
+        System.out.println("deck:");
         for (Card c : DeckCards) {
             if (itemsPrinted < itemsPerLine) {
-                System.out.print(c.toString() + c.cardValue());
+                System.out.print(c.toString() + '(' + c.cardValue() + "), ");
                 itemsPrinted++;
             }
             else {

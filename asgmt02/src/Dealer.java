@@ -17,6 +17,8 @@ public class Dealer
 
     public void play(int NumGames, int playersNum, int cardNum, int itemsPerLine, boolean shuffle) {
         for (int i = 0; i < NumGames; i ++) {
+            System.out.println("=== Game" + (i+1) + "===");
+            System.out.println();
             if (shuffle) {
                 cardDeck.shuffle();
             }
@@ -34,14 +36,10 @@ public class Dealer
             }
 
             for (int j = 0; j < playersNum; j++) {
-                System.out.println("--- Hand" + (j+1) + "---" );
-                for (int k = 0; k < cardNum; k++) {
-                    playerHand[j].print(itemsPerLine);
-                    System.out.println(playerHand[j].score());
-                }
+                System.out.println("--- Hand " + (j + 1) + "---");
+                playerHand[j].print(itemsPerLine);
+                System.out.println("\nscore = " + playerHand[j].score());
             }
-
-
         }
         System.out.println("=== Games Complete ===");
 

@@ -32,8 +32,8 @@ public class Hand
     public void print(int itemsPerLine) {
         int itemsPrinted = 0;
         for (Card c : playerHand) {
-            if (itemsPrinted <= itemsPerLine) {
-                System.out.println(c.toString() + "(" + c.cardValue() + ")");
+            if (itemsPrinted < itemsPerLine) {
+                System.out.print(c.toString() + "(" + c.cardValue() + "), ");
                 itemsPrinted++;
             } else {
                 System.out.println();
