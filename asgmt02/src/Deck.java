@@ -19,22 +19,22 @@ public class Deck
         DeckCards = new LinkedList<Card>(protoDeck);
     }
 
-    public void print(int itemsPerLine) {
-        int itemsPrinted = 0;
-        System.out.println("deck:");
+    public String toString(int itemsPerLine) {
+        StringBuilder deckString = new StringBuilder();
+        int itemsPrinted = 1;
         for (Card c : DeckCards) {
-            if (itemsPrinted < itemsPerLine) {
-                System.out.print(c.toString() + '(' + c.cardValue() + "), ");
-                itemsPrinted++;
+            deckString.append(c.toString());
+            if (DeckCards.indexOf(c) < (DeckCards.size() - 1) ) {
+                deckString.append(", ");
             }
-            else {
-                itemsPrinted = 0;
-                System.out.println();
+            if (itemsPrinted % itemsPerLine == 0) {
+                deckString.append("\n");
             }
+            itemsPrinted++;
         }
-        System.out.println();
+        deckString.append("\n");
+        return deckString.toString();
     }
-
 
     public void shuffle() {
         Collections.shuffle(DeckCards);

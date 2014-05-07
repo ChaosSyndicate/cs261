@@ -21,21 +21,21 @@ public class Hand
         playerHand.add(newCard);
     }
 
-    public void remove() {
-        playerHand.remove(0);
-    }
-
-    public void print(int itemsPerLine) {
-        int itemsPrinted = 0;
+    public String toString(int itemsPerLine) {
+        StringBuilder handString = new StringBuilder();
+        int itemsPrinted = 1;
         for (Card c : playerHand) {
-            if (itemsPrinted < itemsPerLine) {
-                System.out.print(c.toString() + "(" + c.cardValue() + "), ");
-                itemsPrinted++;
-            } else {
-                System.out.println();
-                itemsPrinted = 0;
+            handString.append(c.toString());
+            if ((playerHand.indexOf(c) < playerHand.size() - 1)) {
+                handString.append(", ");
             }
+            if (itemsPrinted % itemsPerLine == 0) {
+                handString.append("\n");
+            }
+            itemsPrinted++;
         }
+        handString.append("\n");
+        return handString.toString();
     }
 
 }

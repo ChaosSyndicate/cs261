@@ -42,6 +42,6 @@ public class Card
 
 	public Rank rank()          { return rank; }
 	public Suit suit()          { return suit; }
-	public String toString()    { return rank + " of " + suit; }
+	public String toString()    { return rank + " of " + suit + "(" + cardValue() + ")"; }
     public int cardValue()      { return rank.getValue() * suit.getValue(); }
 }
