@@ -10,39 +10,49 @@ public class Dealer
         return cardDeck.remove();
     }
 
-
-    public void printDeck(int itemsPerLine) {
-        cardDeck.print(itemsPerLine);
+    public void deal(Hand[] playerHand, int numPlayer, int numCard) {
+        for (int i = 0; i < numCard; i++) {
+            for (int j = 0; j < numPlayer; j++) {
+                playerHand[j].add(dealCard());
+            }
+        }
     }
 
-    public void play(int NumGames, int playersNum, int cardNum, int itemsPerLine, boolean shuffle) {
-        for (int i = 0; i < NumGames; i ++) {
-            System.out.println("=== Game" + (i+1) + "===");
+    public void printScores(Hand[] playerHand, int numPlayer, int numCard, int itemsPerLine) {
+        for (int j = 0; j < numPlayer; j++) {
+            System.out.println("--- Hand " + (j + 1) + " ---");
+            System.out.println();
+            System.out.print(playerHand[j].toString(itemsPerLine));
+            System.out.println("score = " + playerHand[j].score());
+            System.out.println();
+        }
+    }
+
+    public void printDeck(int itemsPerLine) {
+        System.out.println("deck:");
+        System.out.print(cardDeck.toString(itemsPerLine));
+        System.out.println();
+    }
+
+    public void play(int numGames, int numPlayer, int numCard, int itemsPerLine, boolean shuffle) {
+        for (int i = 0; i < numGames; i++) {
+            System.out.println("=== Game " + (i+1) + " ===");
             System.out.println();
             if (shuffle) {
                 cardDeck.shuffle();
             }
 
-            Hand playerHand[] = new Hand[playersNum];
-            for (int j = 0; j < playersNum; j++) {
+            Hand playerHand[] = new Hand[numPlayer];
+
+            for (int j = 0; j < numPlayer; j++) {
                 playerHand[j] = new Hand();
             }
 
-            //Deal Cards for each player
-            for (int j = 0; j < cardNum; j++) {
-                for (int k = 0; k <= playersNum; k++) {
-                    playerHand[j].add(dealCard());
-                }
-            }
-
-            for (int j = 0; j < playersNum; j++) {
-                System.out.println("--- Hand " + (j + 1) + "---");
-                playerHand[j].print(itemsPerLine);
-                System.out.println("\nscore = " + playerHand[j].score());
-            }
+            deal(playerHand, numPlayer, numCard);
+            printScores(playerHand, numPlayer, numCard, itemsPerLine);
         }
         System.out.println("=== Games Complete ===");
-
+        System.out.println();
     }
 
 }
