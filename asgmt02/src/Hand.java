@@ -9,10 +9,6 @@ public class Hand
         playerHand = new LinkedList<Card>();
     }
 
-    Hand(List<Card> PlayerHand) {
-        this.playerHand = PlayerHand;
-    }
-
     public int score() {
         int score = 0;
         for (Card c : playerHand) {

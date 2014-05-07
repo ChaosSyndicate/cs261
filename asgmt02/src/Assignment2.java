@@ -31,7 +31,6 @@ public class Assignment2
 
         System.out.printf("games: %d, hands: %d, cards per hand: %d,%ncards per line: %d, shuffle: %b%n%n",
         				  N_GAMES, N_HANDS, CARDS_PER_HAND, CARDS_PER_LINE, SHUFFLE);
-        // add your code here
         Dealer dealer = new Dealer();
         dealer.printDeck(CARDS_PER_LINE);
         dealer.play(N_GAMES, N_HANDS, CARDS_PER_HAND, CARDS_PER_LINE, SHUFFLE);
