@@ -1,8 +1,8 @@
-import java.io.PrintStream;
-import java.util.Collection;
-
 import library.Item;
 import library.Library;
+
+import java.io.PrintStream;
+import java.util.Collection;
 
 // make no changes to this code,
 //   except to have it print out your actual name instead of "I. Forgot"
@@ -16,7 +16,7 @@ public class Assignment3
 		PrintStream	out = System.out;				// we will be printing to the standard output stream
 		Item		item;
 		
-		out.printf("CS261 - Assignment 3 - I. Forgot%n%n");
+		out.printf("CS261 - Assignment 3 - Kevin Bui%n%n");
 		
 		// add items to library
 		out.printf(">>>>>> adding items to library:%n%n");

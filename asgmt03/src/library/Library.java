@@ -2,10 +2,13 @@ package library;
 
 import java.io.PrintStream;
 import java.util.Collection;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Library
 {
 	// general methods
+    private Map<String, Item> itemCollection = new TreeMap<String, Item>();
 	
 	// returns all of the items which have the specified keyword
 	public Collection<Item> itemsForKeyword(String keyword)
@@ -16,6 +19,7 @@ public class Library
 	// print an item from this library to the output stream provided
 	public void printItem(PrintStream out, Item item)
 	{
+        out.print(item.toString());
 	}
 	
 	// book-related methods
@@ -23,13 +27,17 @@ public class Library
 	// adds a book to the library
 	public Item addBook(String title, String author, int nPages, String... keywords)
 	{
-		return null;
+		Item newBook = new Book(title, author, nPages, keywords);
+        itemCollection.put(title, newBook);
+        return newBook;
 	}
 	
 	// removes a book from the library
 	public boolean removeBook(String title)
 	{
-		return false;
+        itemCollection.remove(title);
+        return true;
+
 	}
 	
 	// returns all of the books by the specified author
@@ -55,7 +63,10 @@ public class Library
 	// adds the specified band members to a music album
 	public void addBandMembers(Item album, String... members)
 	{
-	}
+        Item editAlbum;
+        editAlbum = itemCollection.get(album);
+        (MusicAlbum) editAlbum.editTitle(members);
+    }
 	
 	// removes a music album from the library
 	public boolean removeMusicAlbum(String title)
