@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.TreeSet;
 
-public abstract class Item
+public abstract class Item implements Comparable<Item>
 {
     protected String title;
     protected Set<String> keywords;
@@ -24,6 +24,9 @@ public abstract class Item
 
     public void editTitle(String newTitle) {
         title = newTitle;
+    @Override
+    public int compareTo(Item otherItem) {
+        return this.title.compareTo(otherItem.title);
     }
 
 
