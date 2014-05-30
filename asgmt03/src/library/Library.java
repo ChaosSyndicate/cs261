@@ -10,6 +10,24 @@ public class Library
 	// general methods
     private Map<String, Item> itemCollection = new TreeMap<String, Item>();
 	
+    private Map<String, TreeSet<Item>> keywordIndex;
+    private Map<String, TreeSet<Item>> authorIndex;
+    private Map<String, TreeSet<Item>> bandIndex, musicianIndex;
+    private Map<String, TreeSet<Item>> directorIndex, actorIndex;
+    private TreeMap<String,Item> aBookIndex, aMovieIndex, aAlbumIndex;
+
+    public Library() {
+        keywordIndex = new HashMap<String, TreeSet<Item>>();
+        authorIndex = new HashMap<String, TreeSet<Item>>();
+        bandIndex = new HashMap<String, TreeSet<Item>>();
+        musicianIndex = new HashMap<String, TreeSet<Item>>();
+        directorIndex = new HashMap<String, TreeSet<Item>>();
+        actorIndex = new HashMap<String, TreeSet<Item>>();
+        aBookIndex = new TreeMap<String, Item>();
+        aMovieIndex = new TreeMap<String, Item>();
+        aAlbumIndex = new TreeMap<String, Item>();
+    }
+
 	// returns all of the items which have the specified keyword
 	public Collection<Item> itemsForKeyword(String keyword)
 	{
