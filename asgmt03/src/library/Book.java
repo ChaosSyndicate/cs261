@@ -19,15 +19,23 @@ class Book
     }
 
     public String toString() {
-        System.out.println("-Book-");
-        System.out.println("author: " + author);
-        System.out.println("# pages: " + pageNum);
-        System.out.println("title: " + title);
-        System.out.print("keywords: ");
-        for (String s: keywords) {
-            System.out.print(", " + s);
+        StringBuilder bookString = new StringBuilder();
+        Iterator<String> it = keywords.iterator();
+
+        bookString.append("-Book- \n").append("author:  ").append(author).append('\n');
+        bookString.append("# pages:  ").append(pageNum).append('\n');
+        bookString.append("title:    ").append(title).append('\n');
+
+        bookString.append("keywords: ");
+        while (it.hasNext()) {
+            String s = it.next();
+            bookString.append(s);
+            if (it.hasNext()) {
+                bookString.append(',');
+            }
         }
-        return null;
+        bookString.append('\n').append('\n');
+        return bookString.toString();
     }
 
 }

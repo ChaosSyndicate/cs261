@@ -30,7 +30,36 @@ class MusicAlbum
 
     @Override
     public String toString() {
-        return null;
+        StringBuilder albumString = new StringBuilder();
+        Iterator<String> it = keywords.iterator();
+        Iterator<String> bandIterator = bandMembers.iterator();
+
+        albumString.append("-Music Album- \n").append("band:    ").append(bandName).append('\n');
+        albumString.append("# songs:  ").append(nSongs).append('\n');
+
+        albumString.append("members:  ");
+        while (bandIterator.hasNext()) {
+            String s = bandIterator.next();
+            albumString.append(s);
+            if (bandIterator.hasNext()) {
+                albumString.append(',');
+            }
+        }
+        albumString.append('\n');
+
+        albumString.append("title:    ").append(title).append('\n');
+
+        albumString.append("keywords: ");
+        while (it.hasNext()) {
+            String s = it.next();
+            albumString.append(s);
+            if (it.hasNext()) {
+                albumString.append(',');
+            }
+        }
+        albumString.append('\n');
+        albumString.append('\n');
+        return albumString.toString();
     }
 
 }
