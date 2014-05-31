@@ -157,35 +157,53 @@ public class Library
 	// adds a movie to the library
 	public Item addMovie(String title, String director, int nScenes, String... keywords)
 	{
-		return null;
+        Movie newMovie = new Movie(title, director, nScenes, keywords);
+        aMovieIndex.put(title, newMovie);
+        index(directorIndex, newMovie, director);
+        index(keywordIndex, newMovie, keywords);
+		return newMovie;
 	}
 
 	// adds the specified actors to a movie
 	public void addCast(Item movie, String... members)
 	{
+        ((Movie) movie).editActors(members);
+        index(actorIndex, movie, members);
 	}
 
 	// removes a movie from the library
 	public boolean removeMovie(String title)
 	{
-		return false;
+        boolean deleted = false;
+        if (aMovieIndex.containsKey(title)) {
+            Item tempMovie = aMovieIndex.remove(title);
+            directorIndex.remove(((Movie)tempMovie).getDirector());
+            for (String s: ((Movie) tempMovie).getActors()) {
+                actorIndex.get(s).remove(tempMovie);
+            }
+            for (String s: tempMovie.keywords) {
+                keywordIndex.get(s).remove(tempMovie);
+            }
+            deleted = true;
+        }
+        return deleted;
 	}
 	
 	// returns all of the movies by the specified director
 	public Collection<Item> moviesByDirector(String director)
 	{
-		return null;
+		return directorIndex.get(director);
 	}
 	
 	// returns all of the movies by the specified actor
 	public Collection<Item> moviesByActor(String actor)
 	{
-		return null;
+		return actorIndex.get(actor);
 	}
 	
 	// returns all of the movies in the library
 	public Collection<Item> movies()
 	{
-		return null;
+		return aMovieIndex.values();
 	}	
 }
