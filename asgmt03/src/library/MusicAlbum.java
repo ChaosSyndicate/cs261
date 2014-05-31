@@ -1,11 +1,13 @@
 package library;
 
+import java.util.*;
+
 class MusicAlbum
 	extends Item
 {
     private String bandName;
     private int nSongs;
-    private String bandMembers[];
+    private Set<String> bandMembers;
 
     MusicAlbum(String title, String band, int newNSongs, String... keywords) {
         super(title, keywords);

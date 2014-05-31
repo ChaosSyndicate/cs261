@@ -1,5 +1,7 @@
 package library;
 
+import java.util.Iterator;
+
 class Book
 	extends Item
 {
@@ -10,18 +12,11 @@ class Book
         super(title, keywords);
         author = newAuthor;
         pageNum = nPages;
-
     }
 
-    public void get() {
-
+    public String getAuthor() {
+        return author;
     }
-
-
-    public void remove() {
-
-    }
-
 
     public String toString() {
         System.out.println("-Book-");

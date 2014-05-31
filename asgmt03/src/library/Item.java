@@ -18,12 +18,6 @@ public abstract class Item implements Comparable<Item>
         keywords = new TreeSet<String>(Arrays.asList(newKeywords));
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void editTitle(String newTitle) {
-        title = newTitle;
     @Override
     public int compareTo(Item otherItem) {
         return this.title.compareTo(otherItem.title);

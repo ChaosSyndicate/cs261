@@ -1,15 +1,10 @@
 package library;
 
 import java.io.PrintStream;
-import java.util.Collection;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class Library
 {
-	// general methods
-    private Map<String, Item> itemCollection = new TreeMap<String, Item>();
-	
     private Map<String, TreeSet<Item>> keywordIndex;
     private Map<String, TreeSet<Item>> authorIndex;
     private Map<String, TreeSet<Item>> bandIndex, musicianIndex;
