@@ -102,39 +102,54 @@ public class Library
 	// adds a music album to the library
 	public Item addMusicAlbum(String title, String band, int nSongs, String... keywords)
 	{
-		return null;
+		MusicAlbum newAlbum = new MusicAlbum(title, band, nSongs, keywords);
+        aAlbumIndex.put(title, newAlbum);
+        index(bandIndex, newAlbum, band);
+        index(keywordIndex, newAlbum, keywords);
+        return newAlbum;
 	}
 
 	// adds the specified band members to a music album
 	public void addBandMembers(Item album, String... members)
 	{
-        Item editAlbum;
-        editAlbum = itemCollection.get(album);
-        (MusicAlbum) editAlbum.editTitle(members);
+        ((MusicAlbum)album).editBandMembers(members);
+        index(musicianIndex, album, members);
     }
 	
 	// removes a music album from the library
 	public boolean removeMusicAlbum(String title)
 	{
-		return false;
+        boolean deleted = false;
+        if (aAlbumIndex.containsKey(title)) {
+            Item tempAlbum = aAlbumIndex.remove(title);
+            bandIndex.get(((MusicAlbum)tempAlbum).getBandName()).remove(tempAlbum);
+            for (String s: ((MusicAlbum) tempAlbum).getBandMembers()) {
+                musicianIndex.get(s).remove(tempAlbum);
+            }
+            for (String s: tempAlbum.keywords) {
+                keywordIndex.get(s).remove(tempAlbum);
+            }
+            deleted = true;
+        }
+        return deleted;
 	}
 
 	// returns all of the music albums by the specified band
 	public Collection<Item> musicByBand(String band)
 	{
-		return null;
+		return bandIndex.get(band);
 	}
 	
 	// returns all of the music albums by the specified musician
 	public Collection<Item> musicByMusician(String musician)
 	{
-		return null;
+		return musicianIndex.get(musician);
 	}
 	
 	// returns all of the music albums in the library
 	public Collection<Item> musicAlbums()
 	{
-		return null;
+		return aAlbumIndex.values();
 	}
 	
 	// movie-related methods
