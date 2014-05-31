@@ -28,10 +28,27 @@ public class Library
         aAlbumIndex = new TreeMap<String, Item>();
     }
 
+    // general methods
+    public void index(Map<String, TreeSet<Item>> index, Item newItem, String... varags) {
+        for(String s: varags) {
+            if(!(index.containsKey(s))) {
+                TreeSet<Item> tempSet = new TreeSet<Item>();
+                tempSet.add(newItem);
+                index.put(s, tempSet);
+            }
+            else {
+                TreeSet<Item> temp = index.get(s);
+                temp.add(newItem);
+                index.put(s, temp);
+            }
+        }
+
+    }
+
 	// returns all of the items which have the specified keyword
 	public Collection<Item> itemsForKeyword(String keyword)
 	{
-		return null;
+		return keywordIndex.get(keyword);
 	}
 	
 	// print an item from this library to the output stream provided
