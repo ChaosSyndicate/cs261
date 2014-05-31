@@ -63,28 +63,38 @@ public class Library
 	public Item addBook(String title, String author, int nPages, String... keywords)
 	{
 		Item newBook = new Book(title, author, nPages, keywords);
-        itemCollection.put(title, newBook);
+        aBookIndex.put(title, newBook);
+        index(authorIndex, newBook, author);
+        index(keywordIndex, newBook, keywords);
         return newBook;
 	}
 	
 	// removes a book from the library
 	public boolean removeBook(String title)
 	{
-        itemCollection.remove(title);
-        return true;
+        boolean delete = false;
+        if (aBookIndex.containsKey(title)) {
+            Item tempBook = aBookIndex.remove(title);
+            authorIndex.remove(((Book)tempBook).getAuthor());
+            for (String s: tempBook.keywords) {
+                keywordIndex.get(s).remove(tempBook);
+            }
+            delete = true;
+        }
+        return delete;
 
 	}
-	
+
 	// returns all of the books by the specified author
 	public Collection<Item> booksByAuthor(String author)
 	{
-		return null;
+		return authorIndex.get(author);
 	}
 	
 	// returns all of the books in the library
 	public Collection<Item> books()
 	{
-		return null;
+		return aBookIndex.values();
 	}
 	
 	// music-related methods
