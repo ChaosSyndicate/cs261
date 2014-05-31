@@ -1,26 +1,29 @@
 package library;
 
-import java.util.Arrays;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 class Movie
 	extends Item
 {
     private String director;
     private int sceneNum;
-    private Set<String> bandMembers;
+    private Set<String> actorList;
 
-    public void get() {
-
+    Movie(String title, String director, int nScenes, String... keywords) {
+        super(title, keywords);
+        this.director = director;
+        sceneNum = nScenes;
     }
 
-    public void addBandMembers(String... members) {
-        bandMembers = new TreeSet<String>(Arrays.asList(members));
+    public String getDirector() {
+        return director;
     }
 
-    public void remove() {
-
+    public Collection<String> getActors() {
+        return actorList;
+    }
+    public void editActors(String... actors) {
+        actorList = new TreeSet<String>(Arrays.asList(actors));
     }
 
     @Override
