@@ -16,17 +16,18 @@ class MusicAlbum
 
     }
 
-    public void get() {
-
+    public void editBandMembers(String... keywords) {
+        bandMembers = new TreeSet<String>(Arrays.asList(keywords));
     }
 
-    public void add() {
-
+    public Collection<String> getBandMembers() {
+        return bandMembers;
     }
 
-    public void remove() {
-
+    public String getBandName() {
+        return bandName;
     }
+
 
     @Override
     public String toString() {
