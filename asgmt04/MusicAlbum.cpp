@@ -5,6 +5,11 @@ MusicAlbum::MusicAlbum(void)
 {
 }
 
+MusicAlbum::MusicAlbum(const string& title, const string& author, const int nSongs) : Item(title, author)
+{
+	numSongs = nSongs;
+}
+
 MusicAlbum::~MusicAlbum(void)
 {
 }

@@ -3,6 +3,9 @@
 #include <ostream>
 #include <set>
 #include <string>
+#include <iomanip>
+
+#include <stdarg.h>
 
 using namespace std;
 
@@ -12,6 +15,16 @@ public:
 	Item(const string& title, const string& artist);
 	Item();
 	virtual ~Item();
+	
+	string getTitle() const;
+	string getArtist() const;
+	set<string>* getKeywords() const;
+	void addKeywords(int nKeywords, ...);
+
+protected:
+	string title;
+	string artist;
+	set<string> *keywords;
 };
 
 // You can't store Item* in an ItemSet, because that would disable the automatic

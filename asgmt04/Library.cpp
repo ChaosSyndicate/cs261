@@ -1,9 +1,44 @@
 #include "memoryleakdetect.h"		// needs to be first #include in the .cpp file
 #include <cstdarg>					// support macros for vararg
 #include <iostream>
+#include <unordered_map>
 #include "Library.h"
+#include "Book.h"
+#include "Movie.h"
+#include "MusicAlbum.h"
 
 // general functions
+
+Library::Library()
+{
+	map<string, ItemSet> *keywordIndex = new map < string, ItemSet* > ;
+	map<string, StringSet> *artistIndex;
+	map<string, StringSet> *titleIndex;
+	map<string, StringSet> *bandMemberIndex;
+	map<string, StringSet> *actorindex;
+	map<string, ItemSet> bookIndex, albumIndex, movieIndex;
+}
+
+void indexItem(StringToItemSetMap index, Item indexingItem, int nKeywords, string vargas...)
+{
+	va_list keywords;
+	char *keyword;
+
+
+	va_start(keywords, nKeywords);
+	for (int i = 0; i < nKeywords; i++)
+	{
+		string key = va_arg(keywords, string);
+		if (index.find(key) != index.end())
+		{
+			ItemSet *
+		}
+			
+
+	}
+
+}
+
 
 void Library::addKeywordsForItem(const Item* const item, int nKeywords, ...)
 {
@@ -22,16 +57,22 @@ void Library::addKeywordsForItem(const Item* const item, int nKeywords, ...)
 
 const ItemSet* Library::itemsForKeyword(const string& keyword) const
 {
-	// your code here
-	return NULL;
+	ItemSet* keywordEntry = nullptr;
+	if (keywordIndex[keyword] != nullptr)
+	{
+		keywordEntry = keywordIndex[keyword];
+	}
+	return keywordEntry;
 }
 
 // book-related functions
 
 const Item* Library::addBook(const string& title, const string& author, const int nPages)
 {
-	// your code here
-	return NULL;
+	Item *newBook = new Book(title, author, nPages);
+	bookIndex.insert(newBook);
+
+	return newBook;
 }
 
 const ItemSet* Library::booksByAuthor(const string& author) const
@@ -43,7 +84,7 @@ const ItemSet* Library::booksByAuthor(const string& author) const
 const ItemSet* Library::books() const
 {
 	// your code here
-	return NULL;
+	retPPPPPPPPPPPPPurn bookIndex.at();
 }
 
 // music-related functions
@@ -120,5 +161,4 @@ static void deleteItemSetContents(ItemSet& itemSet)
 
 Library::~Library()
 {
-	// your code here
 }

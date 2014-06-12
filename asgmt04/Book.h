@@ -8,5 +8,9 @@ class Book :
 public:
 	Book(void);
 	~Book(void);
+	Book(string newTitle, string newAuthor, int newNPages);
+
+private:
+	int nPages;
 };
 

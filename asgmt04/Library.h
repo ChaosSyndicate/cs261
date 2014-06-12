@@ -6,6 +6,9 @@
 #include <set>
 #include <string>
 #include "Item.h"
+#include "Book.h"
+#include "Movie.h"
+#include "MusicAlbum.h"
 
 using namespace std;
 
@@ -17,11 +20,18 @@ typedef map<string,ItemSet*>	StringToItemSetMap;
 class Library
 {
 private:
+	mutable map<string, ItemSet*> keywordIndex;
+	mutable map<string, ItemSet*> artistIndex, titleIndex;
+	mutable map<string, ItemSet> bandMemberIndex;
+	mutable map<string, ItemSet> actorindex;
+	mutable ItemSet bookIndex, albumIndex, movieIndex;
 
 public:
 	// general functions
 	void addKeywordsForItem(const Item* const item, int nKeywords, ...);
 	const ItemSet* itemsForKeyword(const string& keyword) const;
+	void indexItem(StringToItemSetMap index, Item newItem, string vargas...);
+	Library();
 
 	// book-related functions
 	const Item* addBook(const string& title, const string& author, const int nPages);

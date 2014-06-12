@@ -5,6 +5,13 @@ Book::Book(void)
 {
 }
 
+Book::Book(string newTitle, string newAuthor, int newNPages): Item(newTitle, newAuthor)
+{
+	int nPages = newNPages;
+}
+
+
 Book::~Book(void)
 {
 }
+

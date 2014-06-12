@@ -24,7 +24,7 @@ int main(int argc, char **argv)
     ostream&	out(cout);
     const Item	*item;
 
-    cout << "CS261 - Assignment 4 - I. Forgot" << endl << endl;
+    cout << "CS261 - Assignment 4 - Kevin Bui" << endl << endl;
 
 	// create library instance
 	library = new Library();

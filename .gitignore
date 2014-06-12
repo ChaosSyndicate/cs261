@@ -2,3 +2,6 @@
 out/
 asgmt01/src/amazon.txt
 *.MF
+*.sdf
+*.sln
+asgmt04/Debug/*
